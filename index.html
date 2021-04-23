@@ -8,60 +8,14 @@
 
 	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
 
-	<style type="text/css">
-		body{
-			margin:0;
-			padding: 0;
-			font-family: sans-serif;
-			min-height: 100vh;
-			/*background-image: url('/bg2.jpg');*/
-			background-size: cover;
-			background-position: center;
-			background-repeat: no-repeat;
-		}
-
-		input[type="radio"] + label span {
-			border-color: #212121;
-			transition: background .2s, transform .2s;
-		}
-
-		input[type="radio"] + label span:hover,
-		input[type="radio"] + label:hover span{
-			transform: scale(1.2);
-		} 
-
-		input[type="radio"]:checked + label span {
-			background-color: #10B981; /*bg-blue*/
-			border-color: #10B981;
-			box-shadow: 0px 0px 0px 2px white inset;
-		}
-
-		input[type="radio"]:checked + label{
-			color: #10B981; /*text-blue*/
-		}
-
-		/* Number Input Arrows Hidden */
-		/* Chrome, Safari, Edge, Opera */
-		input::-webkit-outer-spin-button,
-		input::-webkit-inner-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-		}
-		/* Firefox */
-		input[type=number] {
-			-moz-appearance: textfield;
-		}
-	</style>
-
-
-
+	<link rel="stylesheet" type="text/css" href="style.css" />
 
 
 </head>
 <body class="bg-gray-50">
 
-	<main class="w-full flex flex-wrap items-center">
-		<h1 class="w-full text-2xl text-green-500 text-center italic mt-12">Resize image(s) instantly!</h1>
+	<main class="w-full pt-8">
+		<h1 class="w-full text-4xl text-green-500 text-center italic">Resize image(s) instantly!</h1>
 
 		<div class="the_form w-10/12 md:w-3/5 m-auto">
 			<form method="POST" enctype="multipart/form-data" action="/processImage" class="flex justify-center items-center flex-wrap">
@@ -140,6 +94,13 @@
 			</form>
 		</div>
 	</main>
+
+	<!-- Footer -->
+	<footer class="w-full py-2 bg-green-600">
+		<div class="text-center">
+			&copy; Copyright 2021. Developed by <a href="https://ishmam-r.web.app" target="_blank" rel="no-referrer" class="hover:text-blue-200">Ishmam</a>
+		</div>
+	</footer>
 
 
 	<script src="index.js"></script>
