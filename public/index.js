@@ -22,11 +22,37 @@ function handleFiles() {
 		let size = files[i].size / 1024;
 
 		string += `<li ${ i % 2 === 0 ? "class='pl-2 bg-white'" : "class='pl-2 bg-green-300'" }>
-				${i+1}. 
+				<img data-id='${i}' 
+					class='w-10 h-8 mt-1 object-cover border border-gray-500 thumbs' 
+					src='${URL.createObjectURL(files[i])}' 
+					alt='${files[i].name}' />
 				Name: ${name}, <br /> 
-				Type: ${type}, <br />
+				Type: ${type}, <br /> 
 				Size: ${size.toFixed(2)} kb 
 				</li>`;
 	}
 	accordionFilesList.innerHTML = string;
+
+	var thumbImages = document.querySelectorAll('.thumbs');
+	thumbImages.forEach((thumb) => {
+		thumb.onclick = openModal;
+		// console.log(thumb)
+	})
+}
+
+var modal = document.querySelector('#modal');
+var modaImage = document.querySelector('#modalImage');
+var closeModal = document.querySelector('#closeModal');
+var caption = document.querySelector('#modalCaption');
+function openModal() {
+	// console.log(this);
+	modal.classList.remove('hidden');
+	modalImage.src = this.src;
+	caption.innerText = this.alt;
+	closeModal.addEventListener('click', handleModalClose);
+}
+
+var handleModalClose = function() {
+	// console.log(this);
+	modal.classList.add('hidden');
 }

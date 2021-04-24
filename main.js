@@ -72,11 +72,7 @@ app.post('/processImage', upload.array('file'), (req, res) => {
 	height = req.body.height;
 	// console.log(JSON.stringify(req.body));
 	
-	if ( isNaN(width) || isNaN(height) || width.trim() === '' || height.trim() === '' ) {
-		processImage(req, res, req.files);
-	} else {
-		processImage(req, res, req.files);
-	}
+	processImage(req, res, req.files);
 	
 })
 
@@ -87,9 +83,11 @@ function processImage(req, res, imageFile) {
 	
 	for(let i = 0; i < imageFile.length; i++) {
 		
-		dimensions = imageSize(imageFile[i].path);
-		width = parseInt(dimensions.width);
-		height = parseInt(dimensions.height);
+		if ( isNaN(width) || isNaN(height) || width.trim() === '' || height.trim() === '' ) {
+			dimensions = imageSize(imageFile[i].path);
+			width = parseInt(dimensions.width);
+			height = parseInt(dimensions.height);
+		}
 
 		fileName = imageFile[i].originalname.split('.').slice(0, -1).join('.'); // file name without extension
 		fileOutput = fileName + Date.now() + "." + format;
@@ -98,7 +96,7 @@ function processImage(req, res, imageFile) {
 
 		if (imageFile[i]) {
 			sharp(imageFile[i].path)
-			.resize(width, height)
+			.resize(Number(width), Number(height))
 			.toFile(outputFilePath, (err, info) => {
 				if (err) throw err;
 				// console.log(info)
@@ -133,7 +131,7 @@ function downloadImage (req, res) {
 	}
 	
 	// Multiple images (zip) download
-	if (numberOfFiles >= 2) { 
+	else if (numberOfFiles >= 2) { 
 		res.zip(arrayForZip, 'resized.zip', (err) => {
 			if (err) throw err;
 			// delete files after download

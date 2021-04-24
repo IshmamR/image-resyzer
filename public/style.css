@@ -42,7 +42,29 @@ input[type=number] {
 }
 
 /* Accordion */
-#acc_files_ul {
+ul#acc_files_ul {
 	max-height: 30vh;
 	overflow-y: auto;
+}
+
+
+/* Modal Image */
+div#modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-image: linear-gradient(rgba(50,50,50,0.3), rgba(25,25,25,0.8));
+	background-image: -moz-linear-gradient(rgba(50,50,50,0.3), rgba(25,25,25,0.8));
+	background-image: -o-linear-gradient(rgba(50,50,50,0.3), rgba(25,25,25,0.8));
+}
+img#modalImage {
+	width: 700px;
+	max-width: 90%;
+	max-height: 65vh;
+	object-fit: contain;
+}
+button#closeModal {
+	display: block;
 }
